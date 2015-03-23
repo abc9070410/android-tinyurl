@@ -4,19 +4,19 @@
   <string name="label_main">縮址分享</string>  
   <string name="title_share">縮址分享</string>
   <string name="title_create">創建縮址</string> 
-  <string name="title_creating">正在創建 縮址&#8230;</string> 
-  <string name="title_created">已創建 縮址.</string> 
+  <string name="title_creating">正在創建縮址&#8230;</string> 
+  <string name="title_created">已創建縮址</string> 
   <string name="title_send">分享 %s</string> 
   <string name="hint_url">URL</string> 
-  <string name="label_original_url">原 URL:</string> 
+  <string name="label_original_url">原網址:</string> 
   <string name="button_create">創建</string> 
   <string name="button_send">分享</string> 
-  <string name="button_copy">復制</string> 
+  <string name="button_copy">複製</string> 
   <string name="button_cancel">取消</string> 
   <string name="button_ok">確定</string> 
-  <string name="message_copied">已復制</string> 
+  <string name="message_copied">已複製</string> 
   <string name="message_invalid_url">無效網址</string> 
   <string name="message_connecting">連線中</string>
   <string name="message_network_not_available">沒有網路，無法縮址</string>
-  <string name="message_tip"><b>提示:</b> 縮略URL最適用于分享網頁，在線視頻或者其他較長網址。</string> 
+  <string name="message_tip"><b>提示:</b> 縮址分享最適用於分享網頁，線上影片或者其他較長的網址。</string> 
 </resources>
