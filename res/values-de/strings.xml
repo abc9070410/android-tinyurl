@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Link-Verkürzer für TinyURL</string>
-    <string name="label_main">TinyURL</string>
+    <string name="app_name">TinyShare</string>
+    <string name="label_main">TinyShare</string>
     <string name="title_create">URL erzeugen</string>
-    <string name="title_share">Teilen auf TinyURL</string>
+    <string name="title_share">Teilen auf TinyShare</string>
     <string name="title_creating">URL erzeugen &#8230;</string>
     <string name="title_created">URL erzeugt.</string>
     <string name="title_send">Teile %s</string>
@@ -18,7 +18,7 @@
     <string name="message_copied">Kopiert</string>
     <string name="message_invalid_url">Ungültige URL</string>
     <string name="message_tip"><b>Tipp:</b> Der einfachste Weg, einen
-        TinyURL-Link zu erzeugen, ist es, eine Webseite, ein YouTube-Video oder
+        TinyShare-Link zu erzeugen, ist es, eine Webseite, ein YouTube-Video oder
         einen anderen Link zu teilen. </string>
 
 </resources>

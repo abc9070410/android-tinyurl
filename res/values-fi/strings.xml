@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Translations by Juho Mikkonen -->
-    <string name="app_name">Linkin lyhentäjä TinyURL</string>
-    <string name="label_main">TinyURL</string>
+    <string name="app_name">TinyShare</string>
+    <string name="label_main">TinyShare</string>
     <string name="title_create">Luo URL</string>
-    <string name="title_share">Jaa TinyURLissa</string>
+    <string name="title_share">Jaa TinyShareissa</string>
     <string name="title_creating">Luodaan URL&#8230;</string>
     <string name="title_created">URL luotu.</string>
     <string name="title_send">Jaa %s</string>
@@ -19,7 +19,7 @@
     <string name="message_invalid_url">Viallinen URL</string>
     <string name="message_tip">
         <b>Vinkki:</b>
-        Hyviä tapoja käyttää TinyURL linkkiä ovat esim Youtube videot,
+        Hyviä tapoja käyttää TinyShare linkkiä ovat esim Youtube videot,
         nettisivusto tai muu linkki
     </string>
 </resources>

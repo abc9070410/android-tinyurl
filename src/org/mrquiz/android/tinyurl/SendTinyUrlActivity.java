@@ -15,14 +15,13 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.peterbaldwin.client.android.tinyurl;
+package org.mrquiz.android.tinyurl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.MalformedURLException;
 import java.net.URLEncoder;
 
 import org.apache.http.HttpEntity;
@@ -32,47 +31,42 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.mrquiz.android.tinyurl.R;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.ClipboardManager;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.util.Log;
 import android.widget.Toast;
 
 // TODO: Save state
-public class SendTinyUrlActivity extends Activity implements View.OnClickListener,
-        DialogInterface.OnClickListener, Runnable, Handler.Callback {
+public class SendTinyUrlActivity extends Activity implements 
+    Runnable, Handler.Callback {
 
     static final int HANDLE_URL = 1;
 
     static final int HANDLE_ERROR = 2;
 
+    static final int HANDLE_TEXT = 3;
+
     private final Handler mHandler = new Handler(this);
-
-    private TextView mTextOriginalUrl;
-
-    private ProgressBar mProgressUrl;
-
-    private TextView mTextUrl;
-
-    private Button mButtonSend;
-
-    private Button mButtonCopy;
-
-    private Button mButtonCancel;
 
     private String mUrl;
 
     private String mTinyUrl;
+    
+    private Toast mToast;
+    
+    private Boolean mNeedCopy;
+    
+    private Boolean mFinish;
 
     /**
      * {@inheritDoc}
@@ -90,6 +84,10 @@ public class SendTinyUrlActivity extends Activity implements View.OnClickListene
                 Throwable t = (Throwable) msg.obj;
                 handleError(t);
                 return true;
+            case HANDLE_TEXT:
+                String text = (String) msg.obj;
+                handleText(text);
+                return true;
             default:
                 return false;
         }
@@ -98,46 +96,36 @@ public class SendTinyUrlActivity extends Activity implements View.OnClickListene
     void handleUrl(String url) {
         mTinyUrl = url;
 
-        setTitle(R.string.title_created);
-        mProgressUrl.setVisibility(View.GONE);
-        mTextUrl.setText(url);
-        mTextUrl.setVisibility(View.VISIBLE);
-        mButtonSend.setEnabled(true);
-        mButtonCopy.setEnabled(true);
+        send();
+        
+        if (mNeedCopy)
+        {
+            copy();
+        }
+        
+        finish();
     }
 
     void handleError(Throwable throwable) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        if (throwable instanceof MalformedURLException) {
-            builder.setMessage(R.string.message_invalid_url);
-        } else {
-            // TODO: User-friendly error messages
-            builder.setMessage(String.valueOf(throwable));
+        String text = String.valueOf(throwable);
+        
+        showToast("error : " + text);
+        
+        finish();
+    }
+    
+    void handleText(String text) {        
+        showToast(text);
+        
+        if (mFinish)
+        {
+            finish();
         }
-        builder.setPositiveButton(R.string.button_ok, this);
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.title_creating);
-        setContentView(R.layout.send);
-        mTextOriginalUrl = (TextView) findViewById(R.id.text_original_url);
-        mProgressUrl = (ProgressBar) findViewById(R.id.progress_url);
-        mTextUrl = (TextView) findViewById(R.id.text_url);
-        mButtonSend = (Button) findViewById(R.id.button_send);
-        mButtonCopy = (Button) findViewById(R.id.button_copy);
-        mButtonCancel = (Button) findViewById(R.id.button_cancel);
-
-        mButtonSend.setOnClickListener(this);
-        mButtonCopy.setOnClickListener(this);
-        mButtonCancel.setOnClickListener(this);
-
-        // Disable these buttons until the TinyURL has been created.
-        mButtonSend.setEnabled(false);
-        mButtonCopy.setEnabled(false);
 
         Intent intent = getIntent();
         mUrl = intent.getStringExtra(Intent.EXTRA_TEXT);
@@ -146,36 +134,14 @@ public class SendTinyUrlActivity extends Activity implements View.OnClickListene
             mUrl = "http://www.google.com/";
         }
 
-        mTextOriginalUrl.setText(mUrl);
+        //moveTaskToBack(true);
 
-        // Request a TinyURL on a background thread.
+        // Request a TinyShare on a background thread.
         // This request is fast, so don't worry about the activity being
         // re-created if the keyboard is opened.
         new Thread(this).start();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public void onClick(DialogInterface dialog, int which) {
-        // Close activity after acknowledging error message.
-        // It generally won't be difficult for the user to retry the request
-        // from the activity the launched the original Intent.
-        finish();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void onClick(View v) {
-        if (v == mButtonSend) {
-            send();
-        } else if (v == mButtonCopy) {
-            copy();
-        } else if (v == mButtonCancel) {
-            cancel();
-        }
-    }
 
     private void send() {
         Intent intent = new Intent(Intent.ACTION_SEND);
@@ -183,10 +149,10 @@ public class SendTinyUrlActivity extends Activity implements View.OnClickListene
 
         Intent originalIntent = getIntent();
         if (Intent.ACTION_SEND.equals(originalIntent.getAction())) {
-            // Copy extras from the original intent because they might contain
+            // Copy extras from the original intent because they miht contain
             // additional information about the URL (e.g., the title of a
             // YouTube video). Do this before setting Intent.EXTRA_TEXT to avoid
-            // overwriting the TinyURL.
+            // overwriting the TinyShare.
             intent.putExtras(originalIntent.getExtras());
         }
 
@@ -195,7 +161,6 @@ public class SendTinyUrlActivity extends Activity implements View.OnClickListene
             CharSequence template = getText(R.string.title_send);
             String title = String.format(String.valueOf(template), mTinyUrl);
             startActivity(Intent.createChooser(intent, title));
-            finish();
         } catch (ActivityNotFoundException e) {
             handleError(e);
         }
@@ -206,23 +171,31 @@ public class SendTinyUrlActivity extends Activity implements View.OnClickListene
         ClipboardManager clipboard = (ClipboardManager) service;
         clipboard.setText(mTinyUrl);
 
-        // Let the user know that the copy was successful.
-        int resId = R.string.message_copied;
-        Toast toast = Toast.makeText(this, resId, Toast.LENGTH_SHORT);
-        toast.show();
-        finish();
+        // Let the user know that the copy was successful.    
+        String text = getText(R.string.message_copied) + " : " + mTinyUrl;
+        showToast(text);
     }
-
-    private void cancel() {
-        finish();
+    
+    private void showToast(String text)
+    {
+        if (mToast == null)
+        {
+            mToast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+        }
+        else
+        {
+            mToast.setText(text);
+        }
+        mToast.show();
     }
 
     /**
-     * Sends the TinyURL to the event thread.
+     * Sends the TinyShare to the event thread.
      * 
-     * @param url the TinyURL.
+     * @param url the TinyShare.
      */
-    private void sendUrl(String url) {
+    private void sendUrl(String url, Boolean needCopy) {
+        mNeedCopy = needCopy;
         mHandler.obtainMessage(HANDLE_URL, url).sendToTarget();
     }
 
@@ -234,16 +207,19 @@ public class SendTinyUrlActivity extends Activity implements View.OnClickListene
     private void sendError(Throwable t) {
         mHandler.obtainMessage(HANDLE_ERROR, t).sendToTarget();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void run() {
-        if (!Util.isValidUrl(mUrl)) {
-            sendError(new MalformedURLException());
-            return;
-        }
+    
+    private void sendText(String text, Boolean needFinish) {
+        mFinish = needFinish;
+        mHandler.obtainMessage(HANDLE_TEXT, text).sendToTarget();
+    }
+    
+    public String getTinyUrl()
+    {
+        String finalUrl = null;
         try {
+            String text = getText(R.string.message_connecting) + "...";
+            sendText(text, false);
+            
             HttpClient client = new DefaultHttpClient();
             String urlTemplate = "http://tinyurl.com/api-create.php?url=%s";
             String uri = String.format(urlTemplate, URLEncoder.encode(mUrl));
@@ -261,7 +237,7 @@ public class SendTinyUrlActivity extends Activity implements View.OnClickListene
                     BufferedReader bufferedReader = new BufferedReader(reader);
                     String tinyUrl = bufferedReader.readLine();
                     if (tinyUrl != null) {
-                        sendUrl(tinyUrl);
+                        finalUrl = tinyUrl;
                     } else {
                         throw new IOException("empty response");
                     }
@@ -280,5 +256,65 @@ public class SendTinyUrlActivity extends Activity implements View.OnClickListene
         } catch (Error e) {
             sendError(e);
         }
+        
+        return finalUrl;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void run() {
+
+        String finalUrl = mUrl;
+
+        if (Util.isValidUrl(mUrl)) 
+        {
+            
+            if (mUrl.indexOf("http://tinyurl.com/") == 0)
+            {
+                sendUrl(mUrl, false); // got the tinyurl before
+            }
+            else if (!networkConnected())
+            {
+                String text = getText(R.string.message_network_not_available) + "";
+                sendText(text, true);
+            }
+            else
+            {
+                finalUrl = getTinyUrl();
+                
+                if (finalUrl != null)
+                {
+                    sendUrl(finalUrl, true);
+                }
+                else
+                {
+                    sendUrl(mUrl, false);
+                }
+            }
+        }
+        else
+        {
+            sendText(getText(R.string.message_invalid_url) + "", true);
+        }
+    }
+    
+    private boolean networkConnected() {
+        boolean result = false;
+        ConnectivityManager CM = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);       
+        if (CM == null) {
+            result = false;
+        } else {
+            NetworkInfo info = CM.getActiveNetworkInfo(); 
+            if (info != null && info.isConnected()) {
+                if (!info.isAvailable()) {
+                    result = false;
+                } else {
+                    result = true;
+                }
+            }
+        }
+        return result;
     }
 }

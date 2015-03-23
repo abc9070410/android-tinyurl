@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Link-verkorter d.m.v. TinyURL</string>
-    <string name="label_main">TinyURL</string>
+    <string name="app_name">TinyShare</string>
+    <string name="label_main">TinyShare</string>
     <string name="title_create">Creër URL</string>
-    <string name="title_share">Deel op TinyURL</string>
+    <string name="title_share">Deel op TinyShare</string>
     <string name="title_creating">Creëren van URL&#8230;</string>
     <string name="title_created">Nieuw URL.</string>
     <string name="title_send">Deel %s</string>
@@ -16,6 +16,6 @@
     <string name="button_ok">OK</string>
     <string name="message_copied">Gecopieërd</string>
     <string name="message_invalid_url">Ongeldig URL</string>
-    <string name="message_tip"><b>Tip:</b> de makkelijkste manier om een TinyURL link te creëren,
+    <string name="message_tip"><b>Tip:</b> de makkelijkste manier om een TinyShare link te creëren,
     is middels het delen van een web-pagina, YouTube video, of andere link.</string>
 </resources>

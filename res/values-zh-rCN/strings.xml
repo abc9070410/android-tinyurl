@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 <resources>
-  <string name="app_name">缩略URL</string>
-  <string name="label_main">缩略URL</string> 
-  <string name="title_share">缩略URL</string>
-  <string name="title_create">创建缩略URL</string> 
-  <string name="title_creating">正在创建 缩略URL&#8230;</string> 
-  <string name="title_created">已创建 缩略URL.</string> 
+  <string name="app_name">缩址分享</string>
+  <string name="label_main">缩址分享</string> 
+  <string name="title_share">缩址分享</string>
+  <string name="title_create">创建缩址分享</string> 
+  <string name="title_creating">正在创建 缩址分享&#8230;</string> 
+  <string name="title_created">已创建 缩址分享.</string> 
   <string name="title_send">分享 %s</string> 
   <string name="hint_url">URL</string> 
   <string name="label_original_url">原 URL:</string> 
@@ -15,6 +15,8 @@
   <string name="button_cancel">取消</string> 
   <string name="button_ok">确定</string> 
   <string name="message_copied">已复制</string> 
-  <string name="message_invalid_url">无效 URL</string> 
-  <string name="message_tip"><b>提示:</b> 缩略URL最适用于分享网页，在线视频或者其他较长网址。</string> 
+  <string name="message_invalid_url">无效 URL</string>
+  <string name="message_connecting">连线中</string>
+  <string name="message_network_not_available">没有网路，无法缩址</string> 
+  <string name="message_tip"><b>提示:</b> 缩址分享最适用于分享网页，在线视频或者其他较长网址。</string> 
 </resources>

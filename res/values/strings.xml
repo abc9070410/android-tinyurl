@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Link Shortener for TinyURL</string>
-	<string name="label_main">TinyURL</string>
+	<string name="app_name">TinyShare</string>
+	<string name="label_main">TinyShare</string>
 	<string name="title_create">Create URL</string>
-	<string name="title_share">Share on TinyURL</string>
+	<string name="title_share">Share on TinyShare</string>
 	<string name="title_creating">Creating URL&#8230;</string>
 	<string name="title_created">Created URL.</string>
 	<string name="title_send">Share %s</string>
@@ -16,6 +16,8 @@
 	<string name="button_ok">OK</string>
 	<string name="message_copied">Copied</string>
 	<string name="message_invalid_url">Invalid URL</string>
-	<string name="message_tip"><b>Tip:</b> The easiest way to create a TinyURL link is to share
+	<string name="message_connecting">connecting</string>
+	<string name="message_network_not_available">Network not available</string>
+	<string name="message_tip"><b>Tip:</b> The easiest way to create a TinyShare link is to share
 		a web page, YouTube video, or other link.</string>
 </resources>

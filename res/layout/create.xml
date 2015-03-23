@@ -3,42 +3,5 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:paddingLeft="6dip"
-        android:paddingRight="6dip">
-        <EditText
-            android:id="@+id/edit_url"
-            android:hint="@string/hint_url"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/message_tip"
-            android:paddingBottom="10dip"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-            <Button
-                android:id="@+id/button_create"
-                android:text="@string/button_create"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-            <Button
-                android:id="@+id/button_cancel"
-                android:text="@string/button_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </LinearLayout>
 </ScrollView>
 

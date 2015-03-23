@@ -15,7 +15,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.peterbaldwin.client.android.tinyurl;
+package org.mrquiz.android.tinyurl;
 
 import java.net.MalformedURLException;
 import java.net.URL;
