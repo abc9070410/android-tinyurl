@@ -3,7 +3,7 @@ Automatically exported from code.google.com/p/android-tinyurl
 
 * Create and share TinyURLs on your phone. 
 
-![res](screenshots/Screenshot_2015-03-24-01-47-34.png)
+![res](screenshots/Screenshot_2015-03-24-07-00-55-2.png)
 
 ## Features
 
