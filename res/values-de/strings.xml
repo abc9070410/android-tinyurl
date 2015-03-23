@@ -17,6 +17,8 @@
     <string name="button_ok">OK</string>
     <string name="message_copied">Kopiert</string>
     <string name="message_invalid_url">Ungültige URL</string>
+	<string name="message_connecting">Anschluss</string>
+	<string name="message_network_not_available">Netzwerk nicht verfügbar</string>
     <string name="message_tip"><b>Tipp:</b> Der einfachste Weg, einen
         TinyShare-Link zu erzeugen, ist es, eine Webseite, ein YouTube-Video oder
         einen anderen Link zu teilen. </string>

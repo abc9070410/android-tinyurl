@@ -16,6 +16,8 @@
     <string name="button_ok">OK</string>
     <string name="message_copied">Gecopieërd</string>
     <string name="message_invalid_url">Ongeldig URL</string>
+	<string name="message_connecting">verbinden</string>
+	<string name="message_network_not_available">Netwerk niet beschikbaar</string>
     <string name="message_tip"><b>Tip:</b> de makkelijkste manier om een TinyShare link te creëren,
     is middels het delen van een web-pagina, YouTube video, of andere link.</string>
 </resources>

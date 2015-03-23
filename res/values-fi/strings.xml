@@ -17,6 +17,8 @@
     <string name="button_ok">OK</string>
     <string name="message_copied">Kopioitu</string>
     <string name="message_invalid_url">Viallinen URL</string>
+	<string name="message_connecting">yhdistää</string>
+	<string name="message_network_not_available">Verkko ei ole käytettävissä</string>
     <string name="message_tip">
         <b>Vinkki:</b>
         Hyviä tapoja käyttää TinyShare linkkiä ovat esim Youtube videot,
