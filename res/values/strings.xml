@@ -3,7 +3,7 @@
 	<string name="app_name">TinyShare</string>
 	<string name="label_main">TinyShare</string>
 	<string name="title_create">Create URL</string>
-	<string name="title_share">Share on TinyShare</string>
+	<string name="title_share">&#8230; Share by TinyShare</string>
 	<string name="title_creating">Creating URL&#8230;</string>
 	<string name="title_created">Created URL.</string>
 	<string name="title_send">Share %s</string>

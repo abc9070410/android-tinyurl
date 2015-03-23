@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">缩址分享</string>
   <string name="label_main">缩址分享</string> 
-  <string name="title_share">缩址分享</string>
+  <string name="title_share">&#8230; 缩址分享</string>
   <string name="title_create">创建缩址分享</string> 
   <string name="title_creating">正在创建 缩址分享&#8230;</string> 
   <string name="title_created">已创建 缩址分享.</string> 

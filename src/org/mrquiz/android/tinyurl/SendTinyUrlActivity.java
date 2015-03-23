@@ -217,7 +217,7 @@ public class SendTinyUrlActivity extends Activity implements
     {
         String finalUrl = null;
         try {
-            String text = getText(R.string.message_connecting) + "...";
+            String text = getText(R.string.title_creating) + "";
             sendText(text, false);
             
             HttpClient client = new DefaultHttpClient();

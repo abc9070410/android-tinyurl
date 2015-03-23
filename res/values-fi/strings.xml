@@ -4,7 +4,7 @@
     <string name="app_name">TinyShare</string>
     <string name="label_main">TinyShare</string>
     <string name="title_create">Luo URL</string>
-    <string name="title_share">Jaa TinyShareissa</string>
+    <string name="title_share">&#8230; Jaa TinyShareissa</string>
     <string name="title_creating">Luodaan URL&#8230;</string>
     <string name="title_created">URL luotu.</string>
     <string name="title_send">Jaa %s</string>
